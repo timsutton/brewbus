@@ -1,7 +1,7 @@
 #!/bin/sh -e
 #
-# make_brew_omnibus_osx_pkg.sh
-# Tim Sutton, 2014
+# brewbus.sh
+# Copyright Tim Sutton, 2014-2015
 #
 # Dead-simple Omnibus-style installer package builder for OS X using Homebrew. It
 # takes no command-line options or arguments: all configuration is done using
@@ -11,9 +11,9 @@
 # - PREFIX:         prefix to use in conjunction with FORMULA, to use as a root for the package.
 #                   For example, a PREFIX of "/opt" and a FORMULA of "tree" will make a root of 
 #                   /opt/tree, meaning the final binaries will be in /opt/tree/bin/ (or sbin, etc.)
-#                   default: /opt
+#                   default: /brewbus
 # - REVERSE_DOMAIN: reverse-domain-style prefix for the installer package identifier
-#                   default: org.homebrew
+#                   default: com.github.brewbus
 # - BREW_GIT_SHA:   optional Git SHA-1 hash to which the Brew installation's HEAD will
 #                   be checked out. Useful if you want to 'pin' to a specific known state
 #                   for the Formula.
@@ -22,8 +22,8 @@
 #                   default: (current working directory)
 
 FORMULA=${FORMULA:-""}
-PREFIX=${PREFIX:-"/opt"}
-REVERSE_DOMAIN=${REVERSE_DOMAIN:-"org.homebrew"}
+PREFIX=${PREFIX:-"/brewbus"}
+REVERSE_DOMAIN=${REVERSE_DOMAIN:-"com.github.brewbus"}
 BREW_GIT_SHA=${BREW_GIT_SHA:-""}
 OUTPUT_DIR=${OUTPUT_DIR:-"$(pwd)"}
 
@@ -31,10 +31,9 @@ if [ -z "${FORMULA}" ]; then
     echo "FORMULA must be defined as an environment variable to this script." 1>&2
     exit 1
 fi
-# Clear any existing $PREFIX and install Homebrew to our root
-[ -d "${PREFIX}" ] && rm -rf "${PREFIX}"
-mkdir "${PREFIX}"
+# Clear any existing formula prefix and install Homebrew to this as our "root"
 root="${PREFIX}/${FORMULA}"
+[ -d "${root}" ] && rm -rf "${root}"
 git clone https://github.com/homebrew/homebrew "${root}"
 cd "${root}"
 
@@ -68,5 +67,7 @@ pkgbuild \
     --filter '/.*.md$' \
     --filter '/.*.txt$' \
     --filter '/Library$' \
+    --filter '/bin/brew' \
+    --filter '/share/doc/homebrew' \
+    --filter '/share/man/man1/brew.1' \
     "${OUTPUT_DIR}/${FORMULA}-${version}.pkg"
-
