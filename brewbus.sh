@@ -18,6 +18,9 @@
 #                   be checked out. Useful if you want to 'pin' to a specific known state
 #                   for the Formula.
 #                   default: (none, use the tip of master branch)
+# - BREW_REPO_URL:  optional alternate URL for the Homebrew repo (for example, a path to a
+#                   pre-existing local clone)
+#                   default: https://github.com/homebrew/homebrew
 # - OUTPUT_DIR:     optional output directory for the built package
 #                   default: (current working directory)
 
@@ -25,6 +28,7 @@ FORMULA=${FORMULA:-""}
 PREFIX=${PREFIX:-"/brewbus"}
 REVERSE_DOMAIN=${REVERSE_DOMAIN:-"com.github.brewbus"}
 BREW_GIT_SHA=${BREW_GIT_SHA:-""}
+BREW_REPO_URL=${BREW_REPO_URL:-"https://github.com/homebrew/homebrew"}
 OUTPUT_DIR=${OUTPUT_DIR:-"$(pwd)"}
 
 if [ -z "${FORMULA}" ]; then
@@ -34,7 +38,7 @@ fi
 # Clear any existing formula prefix and install Homebrew to this as our "root"
 root="${PREFIX}/${FORMULA}"
 [ -d "${root}" ] && rm -rf "${root}"
-git clone https://github.com/homebrew/homebrew "${root}"
+git clone "${BREW_REPO_URL}" "${root}"
 cd "${root}"
 
 # Optionally revert to BREW_GIT_SHA
