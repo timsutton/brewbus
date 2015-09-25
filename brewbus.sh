@@ -74,4 +74,5 @@ pkgbuild \
     --filter '/bin/brew' \
     --filter '/share/doc/homebrew' \
     --filter '/share/man/man1/brew.1' \
+    --filter '/.travis.yml' \
     "${OUTPUT_DIR}/${FORMULA}-${version}.pkg"
