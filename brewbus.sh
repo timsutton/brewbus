@@ -5,24 +5,8 @@
 #
 # Dead-simple Omnibus-style installer package builder for OS X using Homebrew. It
 # takes no command-line options or arguments: all configuration is done using
-# environment variables:
-#
-# - FORMULA:        (required) name of Homebrew formula
-# - PREFIX:         prefix to use in conjunction with FORMULA, to use as a root for the package.
-#                   For example, a PREFIX of "/opt" and a FORMULA of "tree" will make a root of 
-#                   /opt/tree, meaning the final binaries will be in /opt/tree/bin/ (or sbin, etc.)
-#                   default: /brewbus
-# - REVERSE_DOMAIN: reverse-domain-style prefix for the installer package identifier
-#                   default: com.github.brewbus
-# - BREW_GIT_SHA:   optional Git SHA-1 hash to which the Brew installation's HEAD will
-#                   be checked out. Useful if you want to 'pin' to a specific known state
-#                   for the Formula.
-#                   default: (none, use the tip of master branch)
-# - BREW_REPO_URL:  optional alternate URL for the Homebrew repo (for example, a path to a
-#                   pre-existing local clone)
-#                   default: https://github.com/homebrew/homebrew
-# - OUTPUT_DIR:     optional output directory for the built package
-#                   default: (current working directory)
+# environment variables. Please see the README.md for details on these configuration
+# variables.
 
 FORMULA=${FORMULA:-""}
 PREFIX=${PREFIX:-"/brewbus"}
