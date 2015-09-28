@@ -20,7 +20,7 @@ More on the general idea of Omnibus packaging here:
 Sets up an "isolated" Homebrew installation at a prefix you specify (e.g. `/myorg`), with the entire
 formula installation located within the formula name (e.g. `/myorg/ffmpeg`). All the formula's
 dependencies should be properly installed using `/myorg/ffmpeg` as the prefix, and an installer
-package will 
+package will be built using the prefix as the `install-location`. The payload is the entire contents of the Homebrew installation, minus a set of Homebrew-specific paths which are excluded from the built package (such as the actual repo in `.git`).
 
 ```
 sudo FORMULA=nyancat ./make_brew_omnibus_osx_pkg.sh
