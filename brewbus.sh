@@ -55,21 +55,26 @@ fi
 # Build a package using our root, with the same path as the install destination.
 # Includes a short list of exclude filters, which should leave Cellar and the
 # LSB directories.
-# This pkgbuild filter list was tailored for exactly one formula: wimlib,
-# so it's likely there are things missing or that eventually it will need to be
-# updated to follow Homebrew.
+# It's likely there are things missing here, and certainly it will need to be
+# updated going forward to follow Homebrew.
 pkgbuild \
     --version "${version}" \
     --identifier "${REVERSE_DOMAIN}.${FORMULA}" \
     --root "${root}" \
     --install-location "${root}" \
+    --filter '.DS_Store' \
     --filter '/.git.*$' \
     --filter '/.yardopts' \
     --filter '/.*.md$' \
     --filter '/.*.txt$' \
     --filter '/Library$' \
     --filter '/bin/brew' \
+    --filter '/completions' \
+    --filter '/docs' \
+    --filter '/etc/bash_completion.d' \
+    --filter '/manpages/brew.*.1' \
     --filter '/share/doc/homebrew' \
-    --filter '/share/man/man1/brew.1' \
+    --filter '/share/zsh' \
+    --filter '/var/homebrew' \
     --filter '/.travis.yml' \
     "${OUTPUT_DIR}/${FORMULA}-${version}.pkg"
