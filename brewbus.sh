@@ -19,16 +19,29 @@ if [ -z "${FORMULA}" ]; then
     echo "FORMULA must be defined as an environment variable to this script." 1>&2
     exit 1
 fi
+
+if [[ $UID == "0" ]]; then
+	echo "This script won't work if you're running it directly with sudo"
+	exit 1
+fi
+
 # Clear any existing formula prefix and install Homebrew to this as our "root"
 root="${PREFIX}/${FORMULA}"
-[ -d "${root}" ] && rm -rf "${root}"
-git clone "${BREW_REPO_URL}" "${root}"
-cd "${root}"
+[ -d "${root}" ] && sudo rm -rf "${root}"
+sudo mkdir -p "${root}"
+sudo chown -R "$(whoami)" "${root}"
 
-# Optionally revert to BREW_GIT_SHA
-if [ -n "${BREW_GIT_SHA}" ]; then
-    git checkout "${BREW_GIT_SHA}"
-fi
+# Just doing a shallow clone of the installer for now, later see how
+# we might still support pinning to a specific SHA in the homebrew-core tap
+# git clone "${BREW_REPO_URL}" "${root}"
+cd "${root}"
+curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1
+
+# TODO: not working yet as long as we're downloading a simple tarball
+# # Optionally revert to BREW_GIT_SHA
+# if [ -n "${BREW_GIT_SHA}" ]; then
+#     git checkout "${BREW_GIT_SHA}"
+# fi
 
 # Brew install $FORMULA, figure out what version was installed
 bin/brew install "${FORMULA}"
