@@ -23,8 +23,10 @@ dependencies should be properly installed using `/myorg/ffmpeg` as the prefix, a
 package will be built using the prefix as the `install-location`. The payload is the entire contents of the Homebrew installation, minus a set of Homebrew-specific paths which are excluded from the built package (such as the actual repo in `.git`).
 
 ```
-sudo FORMULA=nyancat ./make_brew_omnibus_osx_pkg.sh
+FORMULA=nyancat ./brewbus.sh
 ```
+
+To create the initial prefix/formula path, this script uses `sudo` so that your regular (or admin) user can create the necessarily target directories, but the actual brew installation and package creation is done as a regular user. Homebrew also, rightfully, doesn't allow being run as root.
 
 ## Command-line options
 
@@ -45,6 +47,8 @@ Prefix to use in conjunction with FORMULA, to use as a root for the package. For
 Reverse-domain-style prefix for the installer package identifier. **Default:** com.github.brewbus
 
 #### BREW_GIT_SHA
+
+**Note**: This is not currently implemented in the work-in-progress 2018 update.
 
 Optional Git SHA-1 hash to which the Brew installation's HEAD will be checked out. Useful if you want to 'pin' to a specific known state for the Formula. **Default:** (none, and use the tip of master branch)
 
