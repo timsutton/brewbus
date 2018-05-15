@@ -44,7 +44,7 @@ curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1
 # fi
 
 # Brew install $FORMULA, figure out what version was installed
-bin/brew install "${FORMULA}"
+bin/brew install --verbose "${FORMULA}"
 version_path="${root}/Cellar/${FORMULA}"
 version=$(ls "${version_path}")
 if [ -z "${version}" ]; then
