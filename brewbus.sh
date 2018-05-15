@@ -1,9 +1,9 @@
 #!/bin/sh -e
 #
 # brewbus.sh
-# Copyright Tim Sutton, 2014-2015
+# Copyright Tim Sutton, 2014-2018
 #
-# Dead-simple Omnibus-style installer package builder for OS X using Homebrew. It
+# Dead-simple Omnibus-style installer package builder for macOS using Homebrew. It
 # takes no command-line options or arguments: all configuration is done using
 # environment variables. Please see the README.md for details on these configuration
 # variables.
