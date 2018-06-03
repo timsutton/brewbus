@@ -12,7 +12,6 @@ FORMULA=${FORMULA:-""}
 PREFIX=${PREFIX:-"/brewbus"}
 REVERSE_DOMAIN=${REVERSE_DOMAIN:-"ca.macops.brewbus"}
 BREW_GIT_SHA=${BREW_GIT_SHA:-""}
-BREW_REPO_URL=${BREW_REPO_URL:-"https://github.com/homebrew/homebrew"}
 OUTPUT_DIR=${OUTPUT_DIR:-"$(pwd)"}
 
 if [ -z "${FORMULA}" ]; then

@@ -52,10 +52,6 @@ Reverse-domain-style prefix for the installer package identifier. **Default:** c
 
 Optional Git SHA-1 hash to which the Brew installation's HEAD will be checked out. Useful if you want to 'pin' to a specific known state for the Formula. **Default:** (none, and use the tip of master branch)
 
-#### BREW_REPO_URL
-
-Optional alternate URL for the Homebrew repo (for example, a path to a pre-existing local clone to avoid re-cloning fresh). **Default:** https://github.com/homebrew/homebrew
-
 #### OUTPUT_DIR
 
 Optional output directory for the built package. **Default:** Current working directory
