@@ -44,7 +44,7 @@ Prefix to use in conjunction with FORMULA, to use as a root for the package. For
 
 #### REVERSE_DOMAIN
 
-Reverse-domain-style prefix for the installer package identifier. **Default:** com.github.brewbus
+Reverse-domain-style prefix for the installer package identifier. **Default:** ca.macops.brewbus
 
 #### BREW_GIT_SHA
 
