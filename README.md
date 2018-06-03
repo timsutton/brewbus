@@ -59,6 +59,10 @@ Optional output directory for the built package. **Default:** Current working di
 
 Of course, binaries that are installed to `/myprefix/formula/{bin,sbin}` will not be in a user's default `PATH`. This tool wasn't specifically intended for distributing tools for general use but rather infrastructure- or build-related tools. However, one can always add additional paths to files in `/etc/paths.d`, which shells on OS X should be sourcing to add to the end of a user's `PATH` at login. If anyone would like to submit an option to add something like this automatically, it would be welcome.
 
+## Formulae linking to /usr/local/opt
+
+Some formulae link to shared libraries installed to /usr/local/opt (for example, formulae depending on `openssl`), and those will not work with this project as-is. The workaround for these cases would be to manage installations of these dependencies to /usr/local/opt independently. Not yet sure if there is a way to also support installing these dependencies within the same PREFIX as we install the rest of the formula dependencies.
+
 ## A note on sudo and permissions
 
 Assuming one is using prefixes like `/myorg/formula`, this script will require `sudo` in order for the script to have permission to write to the root volume to create the prefix, unless the prefix exists already and is writeable by the current user.
