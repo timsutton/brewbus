@@ -36,11 +36,15 @@ sudo chown -R "$(whoami)" "${root}"
 cd "${root}"
 curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1
 
-# TODO: not working yet as long as we're downloading a simple tarball
-# # Optionally revert to BREW_GIT_SHA
-# if [ -n "${BREW_GIT_SHA}" ]; then
-#     git checkout "${BREW_GIT_SHA}"
-# fi
+# Optionally revert to BREW_GIT_SHA
+if [ -n "${BREW_GIT_SHA}" ]; then
+    bin/brew tap --full homebrew/core 
+    pushd Library/Taps/homebrew/homebrew-core
+    git checkout "${BREW_GIT_SHA}"
+    popd
+else
+    bin/brew tap homebrew/core
+fi
 
 # Brew install $FORMULA, figure out what version was installed
 bin/brew install --verbose "${FORMULA}"

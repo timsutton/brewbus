@@ -48,9 +48,7 @@ Reverse-domain-style prefix for the installer package identifier. **Default:** c
 
 #### BREW_GIT_SHA
 
-**Note**: This is not currently implemented in the work-in-progress 2018 update.
-
-Optional Git SHA-1 hash to which the Brew installation's HEAD will be checked out. Useful if you want to 'pin' to a specific known state for the Formula. **Default:** (none, and use the tip of master branch)
+Optional Git SHA-1 hash to which the tap of the homebrew-core repo will be checked out. Useful if you want to 'pin' to a specific known state for the Formula. **Default:** (none, and use the tip of master branch)
 
 #### OUTPUT_DIR
 
