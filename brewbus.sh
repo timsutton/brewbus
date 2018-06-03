@@ -72,8 +72,9 @@ pkgbuild \
     --filter '/completions' \
     --filter '/docs' \
     --filter '/etc/bash_completion.d' \
-    --filter '/manpages/brew.*.1' \
+    --filter '/manpages/brew.*\.1' \
     --filter '/share/doc/homebrew' \
+    --filter '/share/man/man1/brew.*\.1' \
     --filter '/share/zsh' \
     --filter '/var/homebrew' \
     --filter '/.travis.yml' \
